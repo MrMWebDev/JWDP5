@@ -62,7 +62,7 @@ exports.orderTeddies = (req, res, next) => {
       Teddy.findById(productId).then(
         (teddy) => {
           if (!teddy) {
-            reject('Camera not found: ' + productId);
+            reject('Teddy not found: ' + productId);
           }
           teddy.imageUrl = req.protocol + '://' + req.get('host') + '/images/' + teddy.imageUrl;
           resolve(teddy);
