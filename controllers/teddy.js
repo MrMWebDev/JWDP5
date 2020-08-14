@@ -3,7 +3,7 @@ const Teddy = require('../models/Teddy');
 
 exports.getAllTeddies = (req, res, next) => {
   Teddy.find().then(
-    (teddies) => {
+    teddies => {
       const mappedTeddies = teddies.map((teddy) => {
         teddy.imageUrl = req.protocol + '://' + req.get('host') + '/images/' + teddy.imageUrl;
         return teddy;
@@ -19,7 +19,7 @@ exports.getAllTeddies = (req, res, next) => {
 
 exports.getOneTeddy = (req, res, next) => {
   Teddy.findById(req.params.id).then(
-    (teddy) => {
+    teddy => {
       if (!teddy) {
         return res.status(404).send(new Error('Teddy not found!'));
       }
@@ -59,8 +59,7 @@ exports.orderTeddies = (req, res, next) => {
   let queries = [];
   for (let productId of req.body.products) {
     const queryPromise = new Promise((resolve, reject) => {
-      Teddy.findById(productId).then(
-        (teddy) => {
+      Teddy.findById(productId).then(teddy => {
           if (!teddy) {
             reject('Teddy not found: ' + productId);
           }
@@ -75,8 +74,7 @@ exports.orderTeddies = (req, res, next) => {
     });
     queries.push(queryPromise);
   }
-  Promise.all(queries).then(
-    (teddies) => {
+  Promise.all(queries).then(teddies => {
       const orderId = uuid();
       return res.status(201).json({
         contact: req.body.contact,
