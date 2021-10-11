@@ -1,0 +1,36 @@
+$primary: #f3e9f1;
+$secondary: #ac6bab;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.navbar-collapse {
+  justify-content: end;
+}
+.navbar {
+  background-color: $primary;
+  img {
+    width: 250px;
+    height: 62px;
+  }
+}
+
+.fa-shopping-cart {
+  color: $secondary;
+  font-size: 1.5rem;
+}
+
+.copyright {
+  float: right;
+}
+
+.mrmwebdev {
+  float: right;
+  img {
+    width: 80px;
+    height: 12px;
+    margin: 0 5px 0 5px;
+  }
+}

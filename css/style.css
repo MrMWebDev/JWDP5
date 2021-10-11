@@ -1,0 +1,41 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.navbar-collapse {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.navbar {
+  background-color: #f3e9f1;
+}
+
+.navbar img {
+  width: 250px;
+  height: 62px;
+}
+
+.fa-shopping-cart {
+  color: #ac6bab;
+  font-size: 1.5rem;
+}
+
+.copyright {
+  float: right;
+}
+
+.mrmwebdev {
+  float: right;
+}
+
+.mrmwebdev img {
+  width: 80px;
+  height: 12px;
+  margin: 0 5px 0 5px;
+}
+/*# sourceMappingURL=style.css.map */
