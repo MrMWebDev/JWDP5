@@ -6,31 +6,36 @@ $secondary: #ac6bab;
   box-sizing: border-box;
 }
 
-.navbar-collapse {
-  justify-content: end;
-}
 .navbar {
   background-color: $primary;
+  .navbar-collapse {
+    justify-content: end;
+  }
   img {
     width: 250px;
     height: 62px;
   }
+  i {
+    color: $secondary;
+    font-size: 1.5rem;
+  }
+  a {
+    color: #000;
+  }
 }
 
-.fa-shopping-cart {
-  color: $secondary;
-  font-size: 1.5rem;
+.btn-secondary {
+  background-color: $secondary;
 }
 
 .copyright {
   float: right;
-}
-
-.mrmwebdev {
-  float: right;
-  img {
-    width: 80px;
-    height: 12px;
-    margin: 0 5px 0 5px;
+  .mrmwebdev {
+    float: right;
+    img {
+      width: 80px;
+      height: 12px;
+      margin: 0 5px 0 5px;
+    }
   }
 }

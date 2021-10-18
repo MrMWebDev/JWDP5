@@ -1,4 +1,4 @@
-const api = 'http://localhost:3000/api/teddies';
+const api = 'http://localhost:3000/api/teddies/';
 
 // API request function
 makeRequest = () => {
@@ -31,8 +31,8 @@ createCard = response => {
 
     // add the bootstrap classes and attributes
     card.classList.add('col-12', 'col-sm-6', 'card', 'm-0');
-    newA.classList.add('btn','btn-primary');
-    newImg.classList.add('card-img-top')
+    newA.classList.add('btn','btn-secondary');
+    newImg.classList.add('img-fluid')
     // id is passed in a querystring
     newA.setAttribute('href', 'product.html?id=' + response[i]._id);
     newA.textContent = 'View More Details';
@@ -42,7 +42,7 @@ createCard = response => {
     // items description added
     card.innerHTML += '<h2>' + response[i].name + '</h2>';
     card.innerHTML += '<p>' + response[i].description + '</p>';
-    card.innerHTML += '<p>' + response[i].price / 100 + '</p>';
+    card.innerHTML += '<p>' + '$ ' + response[i].price / 100 + '</p>';
 
     // append the completed elements to the card
     card.appendChild(newImg);
