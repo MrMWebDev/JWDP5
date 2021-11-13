@@ -64,17 +64,25 @@ createCard = (response) => {
   
   btn.textContent = 'Add To Cart';
 
-  btn.addEventListener("click", () => {
+  btn.addEventListener('click', () => {
+    let cartItems = [];
+    const storage = localStorage.getItem('cart');
+    if (storage === null) {
+      cartItems = [];
+    } else {
+      cartItems = JSON.parse(storage);
+    }
 
-      let product = {
+    let product = {
           imageUrl: response.imageUrl,
           name: response.name,
           id: response._id,
           price: response.price,
-          selectColors: dropMenu.value
-      };
-
-      const storage = localStorage.setItem('cart', JSON.stringify(product));
+          selectColors: dropMenu.value,
+          quantity: 1
+    };
+    cartItems.push(product)
+    localStorage.setItem('cart', JSON.stringify(cartItems));
       
   });
 };
