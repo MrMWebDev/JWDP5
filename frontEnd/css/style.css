@@ -33,6 +33,14 @@
   background-color: #ac6bab;
 }
 
+.btn-danger {
+  width: 4rem;
+}
+
+ul {
+  padding-left: 0;
+}
+
 .copyright {
   float: right;
 }

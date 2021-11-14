@@ -24,6 +24,17 @@ makeRequest = () => {
   });
 };
 
+function addNumCart() {
+  const storage = localStorage.getItem('cart');
+  if (storage) {
+      let cartItemsArray = JSON.parse(storage);
+      let cartNum = document.querySelector('.cartNum');
+      cartNum.innerHTML = cartItemsArray.length;
+  }
+  }
+
+addNumCart();
+
 // create card funtion
 createCard = (response) => {
   const main = document.querySelector('main');
@@ -83,7 +94,7 @@ createCard = (response) => {
     };
     cartItems.push(product)
     localStorage.setItem('cart', JSON.stringify(cartItems));
-      
+    addNumCart();
   });
 };
 
