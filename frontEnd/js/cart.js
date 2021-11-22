@@ -1,5 +1,5 @@
 
-
+// const cartItemsArray = JSON.parse(storage);
 const main = document.querySelector('main');
 
 const cardTitle = document.createElement('h2', 'mx-03')
@@ -49,14 +49,29 @@ function displayCart() {
         cartItem.appendChild(removeButton);
       }
     }
-  }
+  };
 
   displayCart();
+
+  //calculate total cost
+function updateCartTotal() {
+  let total = document.getElementById('total-cost');
+  let totalCost = 0
+    for (let i = 0; i < cartItemsArray.length; i++) {
+      totalCost += cartItemsArray[i].price / 100;
+    };
+    //return totalCost
+    total.innerHTML = '$' + totalCost;
+
+    sessionStorage.setItem('price', totalCost);
+};
+
+updateCartTotal();
 
   // Validation Form
 const form = document.createElement('form');
 form.classList.add('row', 'g-3', 'needs-validation');
-form.setAttribute('required', '');
+form.setAttribute('novalidate', '');
 form.innerHTML = '<div class="col-md-4"><label for="validationCustom01" class="form-label">First name</label><input type="text" class="form-control" id="validationCustom01" value="John" required><div class="valid-feedback">Checked!</div></div><div class="col-md-4"><label for="validationCustom02" class="form-label">Last name</label><input type="text" class="form-control" id="validationCustom02" value="Doe" required><div class="valid-feedback">Checked!</div></div><div class="col-md-6"><label for="validationCustom03" class="form-label">City</label><input type="text" class="form-control" id="validationCustom03" required><div class="invalid-feedback">Please provide a valid city.</div></div>'
 const submitForm = document.createElement('button');
 
@@ -66,3 +81,24 @@ submitForm.setAttribute('type', 'submit');
 submitForm.setAttribute('href', 'confirmation.html')
 main.appendChild(form);
 form.appendChild(submitForm);
+
+// Disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
