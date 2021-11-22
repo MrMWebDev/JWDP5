@@ -7,7 +7,7 @@ makeRequest = () => {
     const urlParams = new URLSearchParams(queryString);
     const id = urlParams.get('id');
 
-    let apiRequest = new XMLHttpRequest();
+    const apiRequest = new XMLHttpRequest();
     apiRequest.open('GET', api + id);
     apiRequest.send();
     apiRequest.onreadystatechange = () => {
@@ -53,7 +53,7 @@ createCard = (response) => {
   newImg.setAttribute('src', img);
   card.appendChild(newImg);
   // setup card
-  card.classList.add('col', 'card', 'p-5', 'item');
+  card.classList.add('col-7', 'card', 'p-5', 'item');
   card.innerHTML += '<h2>' + response.name + '</h2>';
   card.innerHTML += '<p>' + '$ ' + response.price / 100 + '</p>';
   card.appendChild(form);

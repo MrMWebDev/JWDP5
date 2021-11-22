@@ -1,8 +1,8 @@
-
-// const cartItemsArray = JSON.parse(storage);
+const storage = localStorage.getItem('cart');
+const cartItems = JSON.parse(storage);
 const main = document.querySelector('main');
-
 const cardTitle = document.createElement('h2', 'mx-03')
+
 cardTitle.textContent = 'Your Cart';
 main.classList.add('m-3');
 cart.appendChild(cardTitle);
@@ -10,9 +10,9 @@ cart.appendChild(cardTitle);
 
 function displayCart() {
     let storage = localStorage.getItem('cart');
-    let cartItemsArray = JSON.parse(storage);
-    if (cartItemsArray) {
-      for (let i =0; i < cartItemsArray.length; i++) {
+    let cartItems = JSON.parse(storage);
+    if (cartItems) {
+      for (let i =0; i < cartItems.length; i++) {
   
         let cart = document.getElementById('cart');
         let cartItem = document.createElement('li');
@@ -22,12 +22,12 @@ function displayCart() {
   
         let item = document.createElement('div');
         item.classList.add('w-50');
-        item.innerHTML = '<p class="my-0">' + cartItemsArray[i].name + '</p> <small class="text-muted">' + cartItemsArray[i].selectColors + '</small>';
+        item.innerHTML = '<p class="my-0">' + cartItems[i].name + '</p> <small class="text-muted">' + cartItems[i].selectColors + '</small>';
   
         let cost = document.createElement('div');
         cost.classList.add('w-25');
         cost.style.marginTop = '12px';
-        cost.innerHTML = '<p class="cart-price text-muted">' + '$' + cartItemsArray[i].price / 100 + '</p>';
+        cost.innerHTML = '<p class="cart-price text-muted">' + '$' + cartItems[i].price / 100 + '</p>';
         
         let removeButton = document.createElement('button');
         removeButton.setAttribute('type', 'button');
@@ -36,9 +36,9 @@ function displayCart() {
         removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
         
         removeButton.onclick = function removeItem() {
-          let cartItemsArray = JSON.parse(localStorage.getItem('cart'));
-          cartItemsArray.splice(i, 1);
-          localStorage.setItem('cart', JSON.stringify(cartItemsArray));
+          let cartItems = JSON.parse(localStorage.getItem('cart'));
+          cartItems.splice(i, 1);
+          localStorage.setItem('cart', JSON.stringify(cartItems));
           //rerender page
           location.reload();
         }
@@ -49,21 +49,22 @@ function displayCart() {
         cartItem.appendChild(removeButton);
       }
     }
-  };
+};
 
   displayCart();
 
-  //calculate total cost
+//calculate total cost
 function updateCartTotal() {
   let total = document.getElementById('total-cost');
   let totalCost = 0
-    for (let i = 0; i < cartItemsArray.length; i++) {
-      totalCost += cartItemsArray[i].price / 100;
+    for (let i = 0; i < cartItems.length; i++) {
+        totalCost += cartItems[i].price / 100;
     };
     //return totalCost
     total.innerHTML = '$' + totalCost;
 
     sessionStorage.setItem('price', totalCost);
+
 };
 
 updateCartTotal();
@@ -76,9 +77,9 @@ form.innerHTML = '<div class="col-md-4"><label for="validationCustom01" class="f
 const submitForm = document.createElement('button');
 
 submitForm.classList.add('btn', 'btn-secondary', 'p-3');
-submitForm.textContent = 'Submit Form';
+submitForm.innerHTML = '<a href="confirmation.html">' + 'Submit' + '</a>';
 submitForm.setAttribute('type', 'submit');
-submitForm.setAttribute('href', 'confirmation.html')
+
 main.appendChild(form);
 form.appendChild(submitForm);
 
@@ -101,4 +102,4 @@ form.appendChild(submitForm);
         form.classList.add('was-validated')
       }, false)
     })
-})()
+})();

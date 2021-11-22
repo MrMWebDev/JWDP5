@@ -29,6 +29,14 @@
   color: #000;
 }
 
+.navbar .cartNum {
+  position: relative;
+  top: -19px;
+  font-size: 12px;
+  font-weight: bolder;
+  right: 13px;
+}
+
 .btn-secondary {
   background-color: #ac6bab;
 }
