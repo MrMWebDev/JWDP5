@@ -1,12 +1,19 @@
+const orderId = Date.now()
 const storage = localStorage.getItem('cart');
 const cartItems = JSON.parse(storage);
 const main = document.querySelector('main');
-const cardTitle = document.createElement('h2', 'mx-03')
+const cardTitle = document.createElement('h2', 'mx-auto');
 
 cardTitle.textContent = 'Your Cart';
 main.classList.add('m-3');
 cart.appendChild(cardTitle);
 
+const product = [];
+
+const cartArray = JSON.parse(localStorage.getItem('cart'));
+          for (let i = 0; i < cartArray.length; i++) {
+            product.push(cartArray[i].id);
+          };
 
 function displayCart() {
     let storage = localStorage.getItem('cart');
@@ -73,22 +80,46 @@ updateCartTotal();
 const form = document.createElement('form');
 form.classList.add('row', 'g-3', 'needs-validation');
 form.setAttribute('novalidate', '');
-form.innerHTML = '<div class="col-md-4"><label for="validationCustom01" class="form-label">First name</label><input type="text" class="form-control" id="validationCustom01" value="John" required><div class="valid-feedback">Checked!</div></div><div class="col-md-4"><label for="validationCustom02" class="form-label">Last name</label><input type="text" class="form-control" id="validationCustom02" value="Doe" required><div class="valid-feedback">Checked!</div></div><div class="col-md-6"><label for="validationCustom03" class="form-label">City</label><input type="text" class="form-control" id="validationCustom03" required><div class="invalid-feedback">Please provide a valid city.</div></div>'
+form.innerHTML = '<div class="col-md-4"><label for="firstName" class="form-label">First name</label><input type="text" class="form-control" id="firstName" placeholder="John" value="" pattern="[A-Za-z]{1,32}" required><div class="valid-feedback">Checked!</div></div><div class="col-md-4"><label for="lastName" class="form-label">Last name</label><input type="text" class="form-control" id="lastName" placeholder="Doe" value="" pattern="[A-Za-z]{1,32}" required><div class="valid-feedback">Checked!</div></div><div class="col-12"><label for="email" class="form-label">Email</label><input type="email" class="form-control" id="email" placeholder="you@example.com" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><div class="invalid-feedback">Please enter a valid email address for shipping updates.</div></div><div class="col-12"><label for="address" class="form-label">Address</label><input type="text" class="form-control" id="address" placeholder="1234 Main St" pattern="^[#.0-9 a-zA-Z\s,-]+$" required><div class="invalid-feedback">Please enter your shipping address.</div></div><div class="col-md-6 col-lg-4 mt-2"><div><label for="city" class="form-label">City</label></div><div><select class="form-control form-select form-select-lg p-2 w-100" id="city" style="border-radius: 4px;border-color:silver;" aria-label="city" required><option value="">Choose...</option><option value="PHL">Philadelphia</option><option value="PAR">Paris</option><option value="BRS">Bristol</option></select></div><div class="invalid-feedback">Please provide a valid city.</div></div>'
+// const submitLink = document.createElement('a');
 const submitForm = document.createElement('button');
 
 submitForm.classList.add('btn', 'btn-secondary', 'p-3');
-submitForm.innerHTML = '<a href="confirmation.html">' + 'Submit' + '</a>';
 submitForm.setAttribute('type', 'submit');
+submitForm.setAttribute('value', 'submit');
+// submitLink.setAttribute('href', '../frontEnd/confirmation.html');
 
+
+submitForm.textContent = 'Submit';
 main.appendChild(form);
 form.appendChild(submitForm);
+
+  submitForm.addEventListener('click', () => {
+
+      location.replace('../frontEnd/confirmation.html');
+  });
+
+
+
+const contact = {
+  firstName: firstName.value,
+  lastName: lastName.value,
+  city: city.value
+};
+const data = {
+  contact: contact,
+  product: product
+};
+
+sessionStorage.setItem('firstName', contact.firstName);
+sessionStorage.setItem("orderId", orderId);
 
 // Disabling form submissions if there are invalid fields
 (function () {
   'use strict'
 
   // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  var forms = document.querySelectorAll('.needs-validation')
+  const forms = document.querySelectorAll('.needs-validation')
 
   // Loop over them and prevent submission
   Array.prototype.slice.call(forms)
@@ -102,4 +133,29 @@ form.appendChild(submitForm);
         form.classList.add('was-validated')
       }, false)
     })
+
+  
 })();
+
+// orderId()
+
+function makeRequest(data) {
+  fetch('http://localhost:3000/api/teddies/order', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  }).then((response) => {
+    return response.json();
+  }).then((data) => {
+
+    // orderId = data.orderId;
+
+    console.log(orderId);
+    location.replace('../frontEnd/confirmation.html');
+
+  }).catch((err) => {
+    console.log(err);
+  })
+};

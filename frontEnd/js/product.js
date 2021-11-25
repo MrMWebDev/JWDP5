@@ -53,7 +53,7 @@ createCard = (response) => {
   newImg.setAttribute('src', img);
   card.appendChild(newImg);
   // setup card
-  card.classList.add('col-7', 'card', 'p-5', 'item');
+  card.classList.add('col-7', 'card', 'p-5', 'item', 'm-auto');
   card.innerHTML += '<h2>' + response.name + '</h2>';
   card.innerHTML += '<p>' + '$ ' + response.price / 100 + '</p>';
   card.appendChild(form);
