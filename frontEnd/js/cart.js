@@ -16,34 +16,34 @@ const cartArray = JSON.parse(localStorage.getItem('cart'));
           };
 
 function displayCart() {
-    let storage = localStorage.getItem('cart');
-    let cartItems = JSON.parse(storage);
+    const storage = localStorage.getItem('cart');
+    const cartItems = JSON.parse(storage);
     if (cartItems) {
       for (let i =0; i < cartItems.length; i++) {
   
-        let cart = document.getElementById('cart');
-        let cartItem = document.createElement('li');
+        const cart = document.getElementById('cart');
+        const cartItem = document.createElement('li');
   
         cartItem.classList.add('cart-row', 'list-group-item', 'd-flex', 'justify-content-between', 'lh-sm');
         cartItem.style.height = '75px';
   
-        let item = document.createElement('div');
+        const item = document.createElement('div');
         item.classList.add('w-50');
         item.innerHTML = '<p class="my-0">' + cartItems[i].name + '</p> <small class="text-muted">' + cartItems[i].selectColors + '</small>';
   
-        let cost = document.createElement('div');
+        const cost = document.createElement('div');
         cost.classList.add('w-25');
         cost.style.marginTop = '12px';
         cost.innerHTML = '<p class="cart-price text-muted">' + '$' + cartItems[i].price / 100 + '</p>';
         
-        let removeButton = document.createElement('button');
+        const removeButton = document.createElement('button');
         removeButton.setAttribute('type', 'button');
         removeButton.classList.add('btn', 'btn-danger', 'my-2', 'py-1', 'px-2', 'remove');
         removeButton.setAttribute('aria-label', 'Remove');
         removeButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
         
         removeButton.onclick = function removeItem() {
-          let cartItems = JSON.parse(localStorage.getItem('cart'));
+          const cartItems = JSON.parse(localStorage.getItem('cart'));
           cartItems.splice(i, 1);
           localStorage.setItem('cart', JSON.stringify(cartItems));
           //rerender page
@@ -62,16 +62,14 @@ function displayCart() {
 
 //calculate total cost
 function updateCartTotal() {
-  let total = document.getElementById('total-cost');
+  const total = document.getElementById('total-cost');
   let totalCost = 0
     for (let i = 0; i < cartItems.length; i++) {
         totalCost += cartItems[i].price / 100;
     };
     //return totalCost
     total.innerHTML = '$' + totalCost;
-
     sessionStorage.setItem('price', totalCost);
-
 };
 
 updateCartTotal();
@@ -80,26 +78,23 @@ updateCartTotal();
 const form = document.createElement('form');
 form.classList.add('row', 'g-3', 'needs-validation');
 form.setAttribute('novalidate', '');
-form.innerHTML = '<div class="col-md-4"><label for="firstName" class="form-label">First name</label><input type="text" class="form-control" id="firstName" placeholder="John" value="" pattern="[A-Za-z]{1,32}" required><div class="valid-feedback">Checked!</div></div><div class="col-md-4"><label for="lastName" class="form-label">Last name</label><input type="text" class="form-control" id="lastName" placeholder="Doe" value="" pattern="[A-Za-z]{1,32}" required><div class="valid-feedback">Checked!</div></div><div class="col-12"><label for="email" class="form-label">Email</label><input type="email" class="form-control" id="email" placeholder="you@example.com" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><div class="invalid-feedback">Please enter a valid email address for shipping updates.</div></div><div class="col-12"><label for="address" class="form-label">Address</label><input type="text" class="form-control" id="address" placeholder="1234 Main St" pattern="^[#.0-9 a-zA-Z\s,-]+$" required><div class="invalid-feedback">Please enter your shipping address.</div></div><div class="col-md-6 col-lg-4 mt-2"><div><label for="city" class="form-label">City</label></div><div><select class="form-control form-select form-select-lg p-2 w-100" id="city" style="border-radius: 4px;border-color:silver;" aria-label="city" required><option value="">Choose...</option><option value="PHL">Philadelphia</option><option value="PAR">Paris</option><option value="BRS">Bristol</option></select></div><div class="invalid-feedback">Please provide a valid city.</div></div>'
-// const submitLink = document.createElement('a');
-const submitForm = document.createElement('button');
+form.innerHTML = '<div class="col-md-4"><label for="firstName" class="form-label">First Name</label><input type="text" class="form-control" id="firstName" placeholder="John" value="" pattern="[A-Za-z]{1,32}" required><div class="valid-feedback">Checked!</div></div><div class="col-md-4"><label for="lastName" class="form-label">Last Name</label><input type="text" class="form-control" id="lastName" placeholder="Doe" value="" pattern="[A-Za-z]{1,32}" required><div class="valid-feedback">Checked!</div></div><div class="col-12"><label for="email" class="form-label">Email</label><input type="email" class="form-control" id="email" placeholder="you@example.com" value="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required><div class="invalid-feedback">Please enter a valid email address for shipping updates.</div></div><div class="col-12"><label for="address" class="form-label">Address</label><input type="text" class="form-control" id="address" placeholder="1234 Main St" pattern="^[#.0-9 a-zA-Z\s,-]+$" required><div class="invalid-feedback">Please enter your shipping address.</div></div><div class="col-md-6 col-lg-4 mt-2"><div><label for="city" class="form-label">City</label></div><div><select class="form-control form-select form-select-lg p-2 w-100" id="city" style="border-radius: 4px;border-color:silver;" aria-label="city" required><option value="">Choose...</option><option value="PHL">Philadelphia</option><option value="PAR">Paris</option><option value="BRS">Bristol</option></select></div><div class="invalid-feedback">Please provide a valid city.</div></div>'
 
+const submitForm = document.createElement('button');
 submitForm.classList.add('btn', 'btn-secondary', 'p-3');
 submitForm.setAttribute('type', 'submit');
 submitForm.setAttribute('value', 'submit');
-// submitLink.setAttribute('href', '../frontEnd/confirmation.html');
-
-
 submitForm.textContent = 'Submit';
-main.appendChild(form);
 form.appendChild(submitForm);
+main.appendChild(form);
 
-  submitForm.addEventListener('click', () => {
-
-      location.replace('../frontEnd/confirmation.html');
+  form.addEventListener('submit', function (event) {
+      event.preventDefault()
+      if (form.checkValidity()) {
+        location.replace('../frontEnd/confirmation.html');
+      }
+      
   });
-
-
 
 const contact = {
   firstName: firstName.value,
@@ -129,15 +124,10 @@ sessionStorage.setItem("orderId", orderId);
           event.preventDefault()
           event.stopPropagation()
         }
-
         form.classList.add('was-validated')
       }, false)
     })
-
-  
 })();
-
-// orderId()
 
 function makeRequest(data) {
   fetch('http://localhost:3000/api/teddies/order', {
@@ -149,8 +139,6 @@ function makeRequest(data) {
   }).then((response) => {
     return response.json();
   }).then((data) => {
-
-    // orderId = data.orderId;
 
     console.log(orderId);
     location.replace('../frontEnd/confirmation.html');
