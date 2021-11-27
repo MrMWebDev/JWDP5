@@ -53,13 +53,13 @@ createCard = (response) => {
   newImg.setAttribute('src', img);
   card.appendChild(newImg);
   // setup card
-  card.classList.add('col-7', 'card', 'p-5', 'item', 'm-auto');
+  card.classList.add('col-5', 'card', 'p-5', 'item', 'mx-auto', 'my-4');
   card.innerHTML += '<h2>' + response.name + '</h2>';
   card.innerHTML += '<p>' + '$ ' + response.price / 100 + '</p>';
   card.appendChild(form);
   card.appendChild(btn);
   // setup the dropdown menu
-  dropMenuLabel.innerHTML = 'Choose Color Here &nbsp;&nbsp;&nbsp;';
+  dropMenuLabel.innerHTML = 'Choose Color &nbsp;&nbsp;&nbsp;';
   form.appendChild(dropMenuLabel);
   form.appendChild(dropMenu);
 
