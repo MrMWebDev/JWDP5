@@ -5,7 +5,7 @@ const thankYou = document.querySelector('thankYou');
 // thankYou.innerHTML = ' ' + sessionStorage.getItem('firstName') + '!';
 
 // main.appendChild(thankYou);
-main.classList.add('p-5', 'mx-5');
+main.classList.add('row','conf-main','vw-100','vh-82', 'p-5');
 
 // DOM ELEMENT REFERENCES
 let totalCost = document.getElementById('total-cost');

@@ -20,6 +20,17 @@ makeRequest = () => {
   });
 }
 
+function addNumCart() {
+  const storage = localStorage.getItem('cart');
+  if (storage) {
+      let cartItemsArray = JSON.parse(storage);
+      let cartNum = document.querySelector('.cartNum');
+      cartNum.innerHTML = cartItemsArray.length;
+  }
+  }
+
+addNumCart();
+
 createCard = response => {
   const main = document.querySelector('main');
   for (let i in response) {

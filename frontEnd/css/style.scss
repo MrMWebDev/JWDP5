@@ -31,6 +31,10 @@ $secondary: #ac6bab;
   }
 }
 
+.conf-main {
+  height: 82vh;
+}
+
 .btn-secondary {
   background-color: $secondary;
 }
@@ -44,9 +48,9 @@ ul {
 }
 
 .copyright {
-  float: right;
+  // float: right;
   .mrmwebdev {
-    float: right;
+    // float: right;
     img {
       width: 80px;
       height: 12px;
