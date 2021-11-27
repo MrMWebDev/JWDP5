@@ -41,7 +41,7 @@ createCard = response => {
     const newA = document.createElement('a');
 
     // add the bootstrap classes and attributes
-    card.classList.add('col-12', 'col-sm-6', 'card','p-3', 'm-0');
+    card.classList.add('col-sm-5','col-sm-1', 'card','p-3', 'm-3');
     newA.classList.add('btn','btn-secondary');
     newImg.classList.add('img-fluid')
     // id is passed in a querystring
