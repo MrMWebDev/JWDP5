@@ -14,7 +14,7 @@ const cartArray = JSON.parse(localStorage.getItem('cart'));
           for (let i = 0; i < cartArray.length; i++) {
             product.push(cartArray[i].id);
           };
-
+// Fuction to display cart
 function displayCart() {
     const storage = localStorage.getItem('cart');
     const cartItems = JSON.parse(storage);

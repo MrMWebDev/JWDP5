@@ -2,9 +2,6 @@
 const main = document.querySelector('main');
 const thankYou = document.querySelector('thankYou');
 
-// thankYou.innerHTML = ' ' + sessionStorage.getItem('firstName') + '!';
-
-// main.appendChild(thankYou);
 main.classList.add('row','conf-main','vw-100','vh-82', 'p-5');
 
 // DOM ELEMENT REFERENCES
