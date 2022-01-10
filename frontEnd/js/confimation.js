@@ -1,6 +1,8 @@
 'use strict';
-const main = document.querySelector('main');
-const thankYou = document.querySelector('thankYou');
+let main = document.querySelector('main');
+let thankYou = document.querySelector('.thankYou');
+
+thankYou.innerHTML = ' ' + sessionStorage.getItem('firstName') + '!';
 
 main.classList.add('row','conf-main','vw-100','vh-82', 'p-5');
 
