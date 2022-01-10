@@ -1,16 +1,8 @@
-<<<<<<< HEAD
 'use strict';
 let main = document.querySelector('main');
 let thankYou = document.querySelector('.thankYou');
 
 thankYou.innerHTML = ' ' + sessionStorage.getItem('firstName') + '!';
-=======
-'use strict'
->>>>>>> 47fd9057ac3aa1bc129417296e2eb7667e8ffaeb
-
-let thankYouName = document.querySelector('.thankYouName')
-
-thankYouName.innerHTML = ' ' + sessionStorage.getItem('firstName') + '!'
 
 // DOM ELEMENT REFERENCES
 let totalCost = document.getElementById('total-cost')
