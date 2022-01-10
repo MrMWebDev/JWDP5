@@ -1,27 +1,32 @@
+<<<<<<< HEAD
 'use strict';
 let main = document.querySelector('main');
 let thankYou = document.querySelector('.thankYou');
 
 thankYou.innerHTML = ' ' + sessionStorage.getItem('firstName') + '!';
+=======
+'use strict'
+>>>>>>> 47fd9057ac3aa1bc129417296e2eb7667e8ffaeb
 
-main.classList.add('row','conf-main','vw-100','vh-82', 'p-5');
+let thankYouName = document.querySelector('.thankYouName')
+
+thankYouName.innerHTML = ' ' + sessionStorage.getItem('firstName') + '!'
 
 // DOM ELEMENT REFERENCES
-let totalCost = document.getElementById('total-cost');
-let orderId = document.getElementById('orderID');
-
+let totalCost = document.getElementById('total-cost')
+let orderId = document.getElementById('orderID')
 
 // Shows total cost of order and order ID
-totalCost.innerHTML = '$' + ' ' + sessionStorage.getItem('price');
-orderId.innerHTML = sessionStorage.getItem('orderId');
+totalCost.innerHTML = '$' + ' ' + sessionStorage.getItem('price')
+orderId.innerHTML = sessionStorage.getItem('orderId')
 
 // remove the item from localStorage and sessionStorage
-document.getElementById('finish').addEventListener('click', removeAllInfo);
+document.getElementById('return-home').addEventListener('click', removeAllInfo)
 
 function removeAllInfo() {
-    sessionStorage.removeItem('orderId');
-    sessionStorage.removeItem('firstName');
-    sessionStorage.removeItem('price');
-    localStorage.removeItem('cart');
-    location.replace('../frontEnd/index.html');
-};
+    sessionStorage.removeItem('orderId')
+    sessionStorage.removeItem('firstName')
+    sessionStorage.removeItem('price')
+    localStorage.removeItem('cart')
+    location.replace('index.html')
+}
