@@ -84,7 +84,7 @@ function displayCart() {
 
       let cartItemQty = document.createElement('div')
       cartItemQty.classList.add('w-5', 'mt-3')
-      cartItemQty.innerHTML = '<input class="qtyInput" type="number" value="1">'
+      cartItemQty.innerHTML = '<input class="qtyInput" type="number" value="1" min="1">'
 
       let qtyInput = document.getElementsByClassName('qtyInput')
       for (let i = 0; i < qtyInput.length; i++) {
@@ -125,6 +125,7 @@ function displayCart() {
       cartItem.appendChild(cost)
       cartItem.appendChild(removeButton)
     }
+    updateCartTotal()
   }
 }
 
@@ -138,8 +139,8 @@ let city = document.getElementById('city')
 
 //calculate total cost
 function updateCartTotal() {
-  let cartItem = document.getElementsByClassName('cart-items')[0]
-  let cartRow = cartItem.getElementsByClassName('cart-row')
+  let cartTotal = document.getElementsByClassName('cart-items')[0]
+  let cartRow = cartTotal.getElementsByClassName('cart-row')
   let totalCost = 0
   for (let i = 0; i < cartRow.length; i++) {
     cartRow = cartRow[i]

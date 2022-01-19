@@ -95,17 +95,17 @@ createCard = response => {
       id: response._id,
       price: response.price,
       selectColors: dropMenu.value,
-      quantity: 0
+      quantity: 1
     }
     // cartItems.push(products)
     // if the product is not in the cart add it
     if (cartItems.length == 0) {
       cartItems.push(products)
     } else {
-      // if the product with same id and lens is already in the cart then add old quantity and new quantity
+      // if the product with same id and color is already in the cart then add old quantity and new quantity
       let index = cartItems.findIndex(element => element.id === products.id && element.selectColors === products.selectColors)
       if (index != -1) {
-        cartItems[index].quantity += products.quantity
+        cartItems[index].quantity += 1
       } else {
         cartItems.push(products)
       }
